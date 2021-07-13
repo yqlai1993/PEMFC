@@ -1,0 +1,116 @@
+ 
+PROJECT NAME :   E:\Compressor Calculations\Phd-5MW Simple Recuperate Cycle---Compressor\1D Optimization\Obj-eff_total_total\impeller optimization\impeller optimization_SCR\_trk\_flow\test\test.run
+ 
+ Mesh data   
+ ---------   
+ 
+  Number_of_blocks                     16
+  Total_number_of_nodes             32952
+ 
+ Fluid properties  
+ ----------------  
+ 
+  Fluid_type                     Condensable gas
+ 
+ Weight factors used for averaging 
+ --------------------------------- 
+ 
+  For static pressure                    cell face area 
+  For all other variables                absolute cell face mass flux 
+ 
+ 
+ *********************************************************************
+ *                                                                   *
+ * GLOBAL RESULTS AT INLET AND OUTLET                                *
+ *                                                                   *
+ *********************************************************************
+ 
+ 
+                                           INLET              OUTLET 
+ Geometrical data  
+ ----------------  
+ 
+  Hub_radius                             0.14200E-01         0.16000       [m]
+  Shroud_radius                          0.42000E-01         0.16000       [m]
+  Area                                   0.61338E-03         0.49008E-03   [m2]
+ 
+  Number_of_blades                           8                    8        
+ 
+  Rotational_speed                        1938.4              1938.4       [rad/s]
+ 
+ 
+ Absolute velocities  
+ -------------------  
+ 
+  Radial_velocity                        0.21038E-15          27.707       [m/s]
+  Absolute_tangential_velocity           0.40852E-15          37.696       [m/s]
+  Axial_velocity                          26.293            -0.55400       [m/s]
+  Absolute_velocity_magnitude             26.293              46.787       [m/s]
+  Meridional_flow_angle                  0.45845E-15          91.145       [deg]
+  Absolute_blade-to-blade_flow_angle     0.89021E-15          53.678       [deg]
+  Absolute_Mach_number                   0.18070             0.17342       [   ]
+  Swirl                                  0.10763E-16          6.0310       [m2/s]
+ 
+ Relative velocities  
+ -------------------  
+ 
+  Relative_tangential_velocity           -58.780             -272.43       [m/s]
+  Relative_velocity_magnitude             64.724              273.84       [m/s]
+  Relative_blade-to-blade_flow_angle     -65.900             -84.192       [deg]
+  Relative_Mach_number                   0.44482              1.0150       [   ] 
+ 
+ Static conditions 
+ ----------------- 
+ 
+  Static_pressure                        7397603.11         12384375.82    [Pa]
+  Static_temperature                      304.24              326.04       [K]
+  Density                                 458.60              562.81       [kg/m3]
+ 
+  Static_enthalpy                         334334.64           345161.11    [J/kg]
+ 
+ Total conditions 
+ ---------------- 
+ 
+  Absolute_total_pressure                7560031.29         13005510.90    [Pa]
+  Absolute_total_temperature              305.20              328.16       [K]
+ 
+  Relative_total_pressure                8450344.19         30000000.00    [Pa]
+  Relative_total_temperature              309.94              368.71       [K]
+ 
+  Absolute_total_enthalpy                 334685.30           346255.99    [J/kg]
+  Relative_total_enthalpy                 336521.66           382654.36    [J/kg]
+ 
+ Mass flow  
+ ---------  
+ 
+  Mass_flow                               59.168              61.131       [kg/s]
+  Absolute_Mass_flow                      59.168              61.131       [kg/s]
+  (Different in case of backflow) 
+ 
+ Global performance 
+ ------------------ 
+ 
+  Static_pressure_ratio                          1.6741    
+  Absolute_total_pressure_ratio                  1.7203    
+ 
+  Static_temperature_ratio                       1.0717    
+  Absolute_total_temperature_ratio               1.0752    
+ 
+  Isentropic_efficiency                         0.88955         (total-total)
+ 
+ 
+  Axial_thrust                                 0.94984E+06     [N]
+  Torque                                       -2176.8         [N m]
+  Power                                       -0.42195E+07     [W]
+ 
+ *********************************************************************
+ *
+ *  MASSFLOW INTEGRATED ON INLET/OUTLET GROUPS                       *
+ *
+ *********************************************************************
+ INLET GROUPS:
+ *************
+INLET       59.168    
+ OUTLET GROUPS:
+ **************
+OUTLET       61.131    
