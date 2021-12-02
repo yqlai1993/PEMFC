@@ -1,8 +1,8 @@
 using ModelingToolkit,OrdinaryDiffEq
 
-@parameters t,flow_in,T_out,p_next
+@parameters t,flow_in,T_in,T_out,p_next,volu
 @variables m(t),p_out(t)
-@derivatives D'~t
+D=Differential(t)
 
 function PropAir(p_air,T_air)
     alpha=3.653
@@ -39,23 +39,22 @@ function pipeout(switch,T_out,p_out,p_next)
     #       flow_out=Cp_air*Area*p_out*sqrt(Cratio_air)*(2/(Cratio_air+1)^((Cratio_air+1)/(2*(Cratio_air-1))))/(sqrt(R_air*T_out))
     #   end
     end
-    return(flow_out,rho_air,R_air)
+    return(flow_out,rho_air,R_air,Cratio_air)
 end
 
-(flow_out,rho_air,R_air)=pipeout(1,T_out,p_out,p_next)
-volu=0.02
-eqs=(D(m)~flow_in-flow_out,D(p_out)~Cratio*R_air*(flow_in*T_in-flow_out*T_out)/volu)
+
+(flow_out,rho_air,R_air,Cratio_air)=pipeout(1,T_out,p_out,p_next)
+eqs=(D(m)~flow_in-flow_out,D(p_out)~Cratio_air*R_air*(flow_in*T_in-flow_out*T_out)/volu)
 sm_air=ODESystem(eqs,name=:sm_air)
-v_sm=[m=>rho*volu,p_out=>600000]
-p_sm=[flow_in=>1.5*10^-4,T_out=>355.15,p_next=>600000]
+v_sm=[m=>7.0238*0.02,p_out=>400000]
+p_sm=[flow_in=>1.5*10^-4,T_in=>298.15,T_out=>355.15,p_next=>300000,volu=>0.02]
 prob_sm=ODEProblem(sm_air,v_sm,(0,100),p_sm)
 sol_sm=solve(prob_sm,Rodas5())
 
-(flow_out,rho)=pipeout(2,T_out,p_out,p_next)
-volu=0.005
-eqs=(D(m)~flow_in-flow_out,D(p_out)~Cratio*R_air*(flow_in*T_in-flow_out*T_out)/volu)
-rm_air=ODESystem(eqs,name=:rm_air)
-v_rm=[m=>rho*volu_rm,p_out=>600000]
-p_rm=[flow_in=>1.5*10^-4,T_out=>355.15,p_next=>101000]
-prob_rm=ODEProblem(rm_air,v_rm,(0,100),p_rm)
-sol_rm=solve(prob_rm,Rodas5())
+# (flow_out,rho)=pipeout(2,T_out,p_out,p_next)
+# eqs=(D(m)~flow_in-flow_out,D(p_out)~Cratio*R_air*(flow_in*T_in-flow_out*T_out)/volu)
+# rm_air=ODESystem(eqs,name=:rm_air)
+# v_rm=[m=>rho*volu_rm,p_out=>600000]
+# p_rm=[flow_in=>1.5*10^-4,T_out=>355.15,p_next=>101000]
+# prob_rm=ODEProblem(rm_air,v_rm,(0,100),p_rm)
+# sol_rm=solve(prob_rm,Rodas5())

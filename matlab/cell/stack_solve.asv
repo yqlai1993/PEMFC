@@ -58,12 +58,13 @@ Rhum_ca=0.0;
 Rhum_an=0.0;
 [m_water_ca,m_O2_ca,m_N2_ca]=ini(0.21,p_ca,volu_ca,T_ca,Rhum_ca,'ca');
 [m_water_an,m_H2_an,m_N2_an]=ini(1,p_an,volu_an,T_an,Rhum_an,'an');
-tspan=100;
+tspan=50;
 
 for i=1:tspan
     %% 
     % 阴极入口压力
-    p_wv_ca_in=Rhum_ca_in*psat(T_ca_in);
+    p_sat_ca_in=psat(T_ca_in);
+    p_wv_ca_in=Rhum_ca_in*p_sat_ca_in;
     p_air_ca_in=p_ca_in-p_wv_ca_in; 
     [rho_wv_ca_in,cv_wv_ca_in,cp_wv_ca_in]=PropWV(p_wv_ca_in,T_ca_in);
     [rho_wl_ca_in,cv_wl_ca_in,k_wl_ca_in,mu_wl_ca_in]=PropWL(T_ca_in);
@@ -91,14 +92,16 @@ for i=1:tspan
     [rho_N2_ca_in,cv_N2_ca_in,cp_N2_ca_in]=PropN2(p_air_ca_in*flow_N2_ca_in/0.028/(flow_O2_ca_in/0.002+flow_N2_ca_in/0.028),298.15);
     %阴极出口流量
     flow_ca_out=k_ca_out*(p_ca-p_ca_out)/p_amb;
-    [flow_air_ca_out,flow_wv_ca_out,flow_O2_ca_out,flow_N2_ca_out]=massflow(p_O2_ca/p_air_ca,p_wv_ca,p_air_ca,flow_ca_out,'ca');
+    y_O2_ca=p_O2_ca/p_air_ca;
+    [flow_air_ca_out,flow_wv_ca_out,flow_O2_ca_out,flow_N2_ca_out]=massflow(y_O2_ca,p_wv_ca,p_air_ca,flow_ca_out,'ca');
     flow_w_co(i)=flow_wv_ca_out;
     flow_O2_co(i)=flow_O2_ca_out;
     flow_N2_co(i)=flow_N2_ca_out;
     
     %% 
     % 阳极入口压力
-    p_wv_an_in=Rhum_an_in*psat(T_an_in);
+    p_sat_an_in=psat(T_an_in);
+    p_wv_an_in=Rhum_an_in*p_sat_an_in;
     p_mix_an_in=p_an_in-p_wv_an_in; 
     [rho_wv_an_in,cv_wv_an_in,cp_wv_an_in]=PropWV(p_wv_an_in,T_an_in);
     [rho_wl_an_in,cv_wl_an_in,k_wl_an_in,mu_wl_an_in]=PropWL(T_an_in);
